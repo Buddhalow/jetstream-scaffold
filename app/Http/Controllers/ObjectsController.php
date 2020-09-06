@@ -10,8 +10,7 @@ use ReflectionMethod;
 class ObjectsController extends Controller
 {
     private function resolveClass($model) {
-        die($model)
-        if ($model === 'coverage') {
+        if ($model === 'coverages') {
             return 'Coverage';
         }
     }
@@ -21,11 +20,11 @@ class ObjectsController extends Controller
         if (!$Class) {
             return;
         }
-        $allMethod =  new ReflectionMethod("App\Models\\${$Class}", "all");
-        $getFieldsMethod =  new ReflectionMethod("App\Models\\${$Class}", "getFields");
-        return Inertia::render('Model/Index', [
-            'objects' =>$allMethod->invoke(),
-            'fields' => $getFieldsMethod->invoke(),
+        $allMethod =  new ReflectionMethod("App\Models\\${Class}", "all");
+        $getFieldsMethod =  new ReflectionMethod("App\Models\\${Class}", "getFields");
+        return Inertia::render('Object/Index', [
+            'objects' =>$allMethod->invoke(NULL),
+            'fields' => $getFieldsMethod->invoke(NULL),
             'model' => $model
         ]);
     }
@@ -36,7 +35,7 @@ class ObjectsController extends Controller
         $getFieldsMethod =  new ReflectionMethod("App\Models\\${$Class}", "getFields");
         $result = $createMethod->invoke(
             Request::validate(
-                $getFieldsMethod->invoke()
+                $getFieldsMethod->invoke(NULL)
             )
         );
         return Redirect::route('objects');
@@ -49,7 +48,7 @@ class ObjectsController extends Controller
         $result = $createMethod->invoke(
             $id,
             Request::validate(
-                $getFieldsMethod->invoke()
+                $getFieldsMethod->invoke(NULL)
             )
         );
         return Redirect::route('objects', array('model' => $model, 'id' => $id));

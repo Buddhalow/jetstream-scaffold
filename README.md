@@ -1,3 +1,11 @@
+# Laravel jetstream scaffolding package
+
+This is a package for Laravel Scaffolding that will add CRUD scaffolding functionality to Laravel Jetstream.
+
+*Work in progress*
+
+License: MIT
+
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">

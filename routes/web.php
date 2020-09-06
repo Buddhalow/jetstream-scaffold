@@ -37,11 +37,11 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 Route::group(['middleware' => ['auth', 'verified']], function () {
     // User & Profile...
 
-    Route::get('/dashboard/:model/:id', [ObjectsController::class, 'index'])->name('object');
-    Route::put('/dashboard/:model/:id', [ObjectsController::class, 'update'])->name('object.update');
-    Route::delete('/dashboard/:model/:id', [ObjectsController::class, 'delete'])->name('object.delete');
-    Route::get('/dashboard/:model', [ObjectsController::class, 'index'])->name('objects');
-    Route::post('/dashboard/:model', [ObjectsControeller::class, 'store'])->name('objects.post');
+    Route::get('/dashboard/{model}/{id}', [ObjectsController::class, 'index'])->name('object');
+    Route::put('/dashboard/{model}/{id}', [ObjectsController::class, 'update'])->name('object.update');
+    Route::delete('/dashboard/{model}/{id}', [ObjectsController::class, 'delete'])->name('object.delete');
+    Route::get('/dashboard/{model}', [ObjectsController::class, 'index'])->name('objects');
+    Route::post('/dashboard/{model}', [ObjectsController::class, 'store'])->name('objects.post');
 
 });
 Route::middleware(['auth', 'verified'])->get('/dashboard', function () {

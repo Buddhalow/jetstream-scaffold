@@ -4399,6 +4399,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ObjectManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ObjectManager */ "./resources/js/Pages/Object/ObjectManager.vue");
 /* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
 /* harmony import */ var _Jetstream_SectionBorder__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../Jetstream/SectionBorder */ "./resources/js/Jetstream/SectionBorder.vue");
+/* harmony import */ var _Jetstream_ActionSection__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../../Jetstream/ActionSection */ "./resources/js/Jetstream/ActionSection.vue");
 //
 //
 //
@@ -4452,14 +4453,51 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['objects'],
+  props: ['objects', 'fields'],
   components: {
     AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_1__["default"],
-    JetSectionBorder: _Jetstream_SectionBorder__WEBPACK_IMPORTED_MODULE_2__["default"]
+    JetSectionBorder: _Jetstream_SectionBorder__WEBPACK_IMPORTED_MODULE_2__["default"],
+    JetActionSection: _Jetstream_ActionSection__WEBPACK_IMPORTED_MODULE_3__["default"]
+  },
+  data: function data() {
+    return {
+      view: 'table'
+    };
   },
   methods: {
     fromNow: function fromNow(timestamp) {
@@ -29874,75 +29912,187 @@ var render = function() {
                                 return [
                                   _c(
                                     "div",
-                                    { staticClass: "space-y-6" },
-                                    _vm._l(_vm.objects, function(object) {
-                                      return _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "flex items-center justify-between"
-                                        },
-                                        [
-                                          _c("div", [
-                                            _vm._v(
-                                              "\n                                        " +
-                                                _vm._s(object.name) +
-                                                "\n                                    "
-                                            )
-                                          ]),
-                                          _vm._v(" "),
-                                          _c(
-                                            "div",
+                                    { staticClass: "space-y-12" },
+                                    [
+                                      _vm.view === "table"
+                                        ? _c(
+                                            "table",
                                             {
-                                              staticClass: "flex items-center"
+                                              staticClass: "table-fixed",
+                                              staticStyle: { width: "100%" }
                                             },
                                             [
-                                              object.created_at
-                                                ? _c(
-                                                    "div",
-                                                    {
-                                                      staticClass:
-                                                        "text-sm text-gray-400"
-                                                    },
-                                                    [
-                                                      _vm._v(
-                                                        "\n                                            Last used " +
-                                                          _vm._s(
-                                                            _vm.fromNow(
-                                                              object.created_at
-                                                            )
-                                                          ) +
-                                                          "\n                                        "
-                                                      )
-                                                    ]
-                                                  )
-                                                : _vm._e(),
+                                              _c("thead", [
+                                                _c(
+                                                  "tr",
+                                                  _vm._l(
+                                                    Object.values(_vm.fields),
+                                                    function(field) {
+                                                      return _c("th", [
+                                                        _vm._v(
+                                                          "\n                                                " +
+                                                            _vm._s(field) +
+                                                            "\n                                            "
+                                                        )
+                                                      ])
+                                                    }
+                                                  ),
+                                                  0
+                                                )
+                                              ]),
                                               _vm._v(" "),
                                               _c(
-                                                "button",
-                                                {
-                                                  staticClass:
-                                                    "cursor-pointer ml-6 text-sm text-red-500 focus:outline-none",
-                                                  on: {
-                                                    click: function($event) {
-                                                      return _vm.confirmObjectDeletion(
-                                                        object
-                                                      )
-                                                    }
-                                                  }
-                                                },
-                                                [
-                                                  _vm._v(
-                                                    "\n                                            Delete\n                                        "
+                                                "tbody",
+                                                _vm._l(_vm.objects, function(
+                                                  object
+                                                ) {
+                                                  return _c(
+                                                    "tr",
+                                                    [
+                                                      _vm._l(
+                                                        Object.values(
+                                                          _vm.fields
+                                                        ),
+                                                        function(field) {
+                                                          return _c("td", [
+                                                            _vm._v(
+                                                              "\n                                                " +
+                                                                _vm._s(field) +
+                                                                "\n                                            "
+                                                            )
+                                                          ])
+                                                        }
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c("td", [
+                                                        _c(
+                                                          "a",
+                                                          {
+                                                            staticClass:
+                                                              "button cursor-pointer ml-6 text-sm text-red-500 focus:outline-none",
+                                                            attrs: {
+                                                              href:
+                                                                "/" +
+                                                                _vm.model +
+                                                                "/" +
+                                                                object.id
+                                                            }
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "\n                                                Edit\n                                                "
+                                                            )
+                                                          ]
+                                                        )
+                                                      ]),
+                                                      _vm._v(" "),
+                                                      _c("td", [
+                                                        _c(
+                                                          "button",
+                                                          {
+                                                            staticClass:
+                                                              "button cursor-pointer ml-6 text-sm text-red-500 focus:outline-none",
+                                                            on: {
+                                                              click: function(
+                                                                $event
+                                                              ) {
+                                                                return _vm.confirmObjectDeletion(
+                                                                  object
+                                                                )
+                                                              }
+                                                            }
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "\n                                                    Delete\n                                                "
+                                                            )
+                                                          ]
+                                                        )
+                                                      ])
+                                                    ],
+                                                    2
                                                   )
-                                                ]
+                                                }),
+                                                0
                                               )
                                             ]
                                           )
-                                        ]
-                                      )
-                                    }),
-                                    0
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      _vm._l(_vm.objects, function(object) {
+                                        return _vm.view === "list"
+                                          ? _c(
+                                              "div",
+                                              {
+                                                staticClass:
+                                                  "flex items-center justify-between"
+                                              },
+                                              [
+                                                _c("div", [
+                                                  _vm._v(
+                                                    "\n                                        " +
+                                                      _vm._s(object.name) +
+                                                      "\n                                    "
+                                                  )
+                                                ]),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass:
+                                                      "flex items-center"
+                                                  },
+                                                  [
+                                                    object.created_at
+                                                      ? _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "text-sm text-gray-400"
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "\n                                            Last used " +
+                                                                _vm._s(
+                                                                  _vm.fromNow(
+                                                                    object.created_at
+                                                                  )
+                                                                ) +
+                                                                "\n                                        "
+                                                            )
+                                                          ]
+                                                        )
+                                                      : _vm._e(),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "button",
+                                                      {
+                                                        staticClass:
+                                                          "cursor-pointer ml-6 text-sm text-red-500 focus:outline-none",
+                                                        on: {
+                                                          click: function(
+                                                            $event
+                                                          ) {
+                                                            return _vm.confirmObjectDeletion(
+                                                              object
+                                                            )
+                                                          }
+                                                        }
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          "\n                                            Delete\n                                        "
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          : _vm._e()
+                                      })
+                                    ],
+                                    2
                                   )
                                 ]
                               },
@@ -29951,7 +30101,7 @@ var render = function() {
                           ],
                           null,
                           false,
-                          3563936394
+                          3968370693
                         )
                       })
                     ],

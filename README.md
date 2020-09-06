@@ -1,8 +1,18 @@
-# Laravel jetstream scaffolding package
+# Laravel Jetstream-scaffolding package (WIP)
 
 This is a package for Laravel Scaffolding that will add CRUD scaffolding functionality to Laravel Jetstream.
 
-*Work in progress*
+Note:
+* Work in progress - Still experimental - do not use in production.
+* Only Intertiajs support for now
+
+Author: Alexander Forselius <alexander.forselius@buddhalow.com>
+
+## Core basics
+
+This package will provide DashboardModelController that creates a CRUD blueprint for dashboard based entities (such books, articles etc) which provides field info and a set of Vue Pages that dynamically scaffolds common CRUD pages.
+
+This is intended as a starting point to create a package for Jetstream-Scaffold that will ease creating new dashboard CRUD pages for new models.
 
 License: MIT
 

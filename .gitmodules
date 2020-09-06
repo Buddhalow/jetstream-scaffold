@@ -1,0 +1,4 @@
+[submodule "packages/buddhalow/jetstream-scaffold/jetstream-scaffold"]
+	path = packages/buddhalow/jetstream-scaffold/jetstream-scaffold
+	url = git@github.com:Buddhalow/jetstream-scaffold
+	branch = master

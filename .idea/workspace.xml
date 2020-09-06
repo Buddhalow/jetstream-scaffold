@@ -144,7 +144,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Http/Controllers" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/packages/buddhalow/jetstream-scaffold/resources/src/vue/Page" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -156,6 +156,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="\\wsl$\Ubuntu-18.04\home\buddhalow\soartify\packages\buddhalow\jetstream-scaffold\resources\src\vue\Page" />
+      <recent name="\\wsl$\Ubuntu-18.04\home\buddhalow\soartify\packages\buddhalow\jetstream-scaffold\src\Http" />
       <recent name="\\wsl$\Ubuntu-18.04\home\buddhalow\soartify\app\Http\Controllers" />
       <recent name="\\wsl$\Ubuntu-18.04\home\buddhalow\soartify\resources\js\Pages\Object" />
     </key>
@@ -181,7 +183,7 @@
       <updated>1599130940921</updated>
       <workItem from="1599130942054" duration="1465000" />
       <workItem from="1599234918372" duration="100000" />
-      <workItem from="1599235267710" duration="18746000" />
+      <workItem from="1599235267710" duration="19050000" />
     </task>
     <servers />
   </component>

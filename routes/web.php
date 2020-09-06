@@ -1,8 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ExposuresController;
-use App\Http\Controllers\ObjectsController;
+use App\Http\DashboardModelControllers\CoverageDashboardModelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,11 +36,10 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 Route::group(['middleware' => ['auth', 'verified']], function () {
     // User & Profile...
 
-    Route::get('/dashboard/{model}/{id}', [ObjectsController::class, 'index'])->name('object');
-    Route::put('/dashboard/{model}/{id}', [ObjectsController::class, 'update'])->name('object.update');
-    Route::delete('/dashboard/{model}/{id}', [ObjectsController::class, 'delete'])->name('object.delete');
-    Route::get('/dashboard/{model}', [ObjectsController::class, 'index'])->name('objects');
-    Route::post('/dashboard/{model}', [ObjectsController::class, 'store'])->name('objects.post');
+    Route::get('/dashboard/coverages', [CoverageDashboardModelController::class, 'index'])->name('coverage');
+    Route::put('/dashboard/coverages/{id}', [CoverageDashboardModelController::class, 'update'])->name('coverage.update');
+    Route::get('/dashboard/coverages/{id}', [CoverageDashboardModelController::class, 'edit'])->name('coverage.get');
+    Route::delete('/dashboard/coverage/{id}', [CoverageDashboardModelController::class, 'delete'])->name('coverage.delete');
 
 });
 Route::middleware(['auth', 'verified'])->get('/dashboard', function () {

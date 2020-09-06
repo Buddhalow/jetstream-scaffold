@@ -14,7 +14,8 @@ class Coverage extends Model
         'medium',
         'reach',
         'outlet',
-        'covered'
+        'covered',
+        'outlet_id'
     ];
     public static function getFields() {
         return [

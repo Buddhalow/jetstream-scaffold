@@ -5,17 +5,42 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
+use ReflectionClass;
 use ReflectionMethod;
 
 class DashboardModelController extends Controller
 {
+    public function getBelongsToFields($model) {
+        return [];
+    }
+    public function deleteObject($id) {
+        throw new Exception("Not implemented");
+    }
+    public function updateObject($id, $validator) {
+        throw new Exception("Not implemented");
+    }
+    public function saveObject($validator) {
+        throw new Exception("Not implemented");
+    }
+    public function getObject($id) {
+        throw new Exception("Not implemented");
+    }
+    public function getObjects() {
+        throw new Exception("Not implemented");
+    }
+    public function getPluralRoute() {
+        return "objects";
+    }
+    public function getClassModel() {
+        return "Model";
+    }
     public function getModel() {
         return "";
     }
-    public function getListRoute() {
+    public function getLowerCasePlural() {
         return "objects";
     }
-    public function getSingleRoute() {
+    public function getSingularRoute() {
         return "object";
     }
     public function getVueModel() {
@@ -33,54 +58,64 @@ class DashboardModelController extends Controller
     }
     public function index()
     {
-        $allMethod =  new ReflectionMethod("App\Models\\" . $this->getModel(), "all");
-        return Inertia::render($this->getVueModel() . '/Index', [
-            $this->getListRoute() => $allMethod->invoke(NULL),
-            'fields' => $this->getFields(),
-            'model' => $this->getModel()
-        ]);
+        return Inertia::render(
+            $this->getVueModel() . '/Index', [
+                $this->getLowerCasePlural() => $this->getObjects(),
+                'fields' => $this->getFields(),
+                'model' => $this->getLowerCaseSingular(),
+                'plural' => $this->getPluralRoute()
+            ]
+        );
     }
     public function view($id)
     {
-        $getMethod =  new ReflectionMethod("App\Models\\" . $this->getModel(), "get");
         return Inertia::render($this->getVueModel() . '/View', [
-            $this->getSingleRoute() =>$getMethod->invoke(NULL, $id),
+            $this->getLowerCasePlural() => $this->getObject($id),
             'fields' => $this->getFields(),
-            'model' => $this->getModel()
+            'model' => $this->getLowerCaseSingular(),
+            'plural' => $this->getPluralRoute()
         ]);
     }
     public function edit($id)
     {
-        $getMethod =  new ReflectionMethod("App\Models\\" . $this->getModel(), "get");
+        $proposals = array();
+        $fields = $this->getFields();
+        foreach($fields as $key => $field) {
+            $proposals[$key] = [];
+            if ($field['type'] === 'relation') {
+
+                $proposals[$key] = $this->getBelongsToFields($field["model"]);
+            }
+        }
         return Inertia::render($this->getVueModel() . '/Edit', [
-            $this->getSingleRoute() => $getMethod->invoke(NULL, $id),
+            $this->getSingularRoute() => $this->getObject($id),
             'fields' => $this->getFields(),
-            'model' => $this->getModel()
+            'model' => $this->getLowerCaseSingular(),
+            'plural' => $this->getPluralRoute(),
+            'proposals' => $proposals
         ]);
     }
     public function store()
     {
-        $createMethod =  new ReflectionMethod("App\Models\\" . $this->getModel() . "", "create");
-        $result = $createMethod->invoke(
+        $result = $this->createObject(
             Request::validate(
-                $this->getFields()
+                $this->getValidationFields()
             )
         );
-        return Redirect::route($this->getListRoute());
+        return Redirect::route($this->getLowerCasePlural());
     }
     public function update($id)
     {
-        $createMethod =  new ReflectionMethod("App\Models\\" . $this->getModel(), "update");
-        $result = $createMethod->invoke(
+        $this->updateObject(
             $id,
             Request::validate(
-                $this->getFields()
+                $this->getValidationFields()
             )
         );
-        return Redirect::route($this->getListRoute(), array('model' => $this->getModel(), 'id' => $id));
+        return Redirect::route($this->getLowerCasePlural(), array('model' => $this->getModel(), 'id' => $id));
     }
     public function delete() {
-        $deleteMethod =  new ReflectionMethod("App\Models\\" . $this->getModel(), "delete");
-        return Redirect::route($this->getListRoute(), ['model' => $this->getModel()]);
+        $this->deleteObject();
+        return Redirect::route($this->getLowerCasePlural(), ['model' => $this->getModel()]);
     }
 }

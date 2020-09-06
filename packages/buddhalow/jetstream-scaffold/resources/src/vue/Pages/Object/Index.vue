@@ -28,24 +28,27 @@
                                     <table class="table-fixed" style="width: 100%" v-if="view === 'table'">
                                         <thead>
                                             <tr>
-                                                <th v-for="field of Object.values(fields)">
-                                                    {{field }}
+                                                <th class="px-4 py-2" v-for="field of Object.keys(fields)">
+                                                    {{field}}
                                                 </th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr v-for="object in objects">
-                                                <td v-for="field of Object.values(fields)">
-                                                    {{field}}
+                                                <td class="border px-4 py-2" v-for="field of Object.keys(fields)">
+                                                    {{object[field]}}
                                                 </td>
-                                                <td>
-                                                    <a class="button cursor-pointer ml-6 text-sm text-red-500 focus:outline-none" :href="'/' + model + '/' + object.id">
-                                                    Edit
+                                                <td class="border px-4 py-2">
+                                                    <a
+                                                        class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+                                                        :href="'/dashboard/' + plural + '/' + object.id"
+                                                    >
+                                                        Edit
                                                     </a>
                                                 </td>
-                                                <td>
+                                                <td class="border px-4 py-2">
                                                     <button
-                                                        class="button cursor-pointer ml-6 text-sm text-red-500 focus:outline-none"
+                                                        class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
                                                         @click="confirmObjectDeletion(object)"
                                                     >
                                                         Delete
@@ -54,7 +57,7 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <div v-if="view === 'list'" class="flex items-center justify-between" v-for="object in objects">
+                                    <div v-if="view === 'list'" class="flex items-center justify-between" v-for="object of objects">
                                         <div>
                                             {{ object.name }}
                                         </div>
@@ -64,13 +67,11 @@
                                                 Last used {{ fromNow(object.created_at) }}
                                             </div>
 
-                                            <button class="cursor-pointer ml-6 text-sm text-red-500 focus:outline-none"
-                                                    @click="confirmObjectDeletion(object)">
+                                            <button class="cursor-pointer ml-6 text-sm text-red-500 focus:outline-none" @click="confirmObjectDeletion(object)">
                                                 Delete
                                             </button>
                                         </div>
                                     </div>
-                                    </table>
                                 </div>
                             </template>
                         </jet-action-section>
@@ -91,7 +92,9 @@ import JetActionSection from './../../Jetstream/ActionSection'
 export default {
     props: [
         'objects',
-        'fields'
+        'model',
+        'fields',
+        'plural'
     ],
 
     components: {

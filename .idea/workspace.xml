@@ -153,6 +153,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PhpStorm 2020.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -183,7 +184,7 @@
       <updated>1599130940921</updated>
       <workItem from="1599130942054" duration="1465000" />
       <workItem from="1599234918372" duration="100000" />
-      <workItem from="1599235267710" duration="19050000" />
+      <workItem from="1599235267710" duration="26539000" />
     </task>
     <servers />
   </component>
@@ -203,6 +204,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="461" y="169" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1599130954345" />
+    <state x="616" y="243" key="run.anything.popup" timestamp="1599402690675">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="616" y="243" key="run.anything.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1599402690675" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -86,20 +86,7 @@ export default {
         JetSectionBorder,
     },
     methods: {
-        updateObject() {
-            this.updateObjectForm.put('/user/' + this.model + '/' + this.id, {
-                ...Object.keys(this.fields).map(field => ({
-                    field,
-                    value: ''
-                })).reduce((accum, val) => {
-                    accum[val.field] = val.value
-                    return accum;
-                }, {}),
-                preserveScroll: true,
-                preserveState: true,
-            }).then(response => {
-            })
-        }
+
     },
     data() {
         return {
